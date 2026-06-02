@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NexChat — Real-Time Chat</title>
+
+  <!-- Google Fonts: Syne for headings, Plus Jakarta Sans for body -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="chat.css"/>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       APP SHELL — two-panel layout
+       Left: sidebar (contacts)
+       Right: chat window
+  ════════════════════════════════════════════ -->
+  <div class="app-shell">
+
+    <!-- ── LEFT SIDEBAR ── -->
+    <aside class="sidebar">
+
+      <!-- App logo / brand -->
+      <div class="sidebar-header">
+        <span class="logo-dot"></span>
+        <span class="logo-text">NexChat</span>
+        <!-- WebSocket connection status badge -->
+        <span id="ws-status" class="ws-badge connected">● LIVE</span>
+      </div>
+
+      <!-- Search bar -->
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input id="search-input" class="search-input" type="text" placeholder="Search conversations…" />
+      </div>
+
+      <!-- Contact list — each contact opens that chat -->
+      <ul class="contact-list" id="contact-list">
+        <!-- Contacts are rendered by JS -->
+      </ul>
+
+    </aside>
+
+    <!-- ── RIGHT CHAT PANEL ── -->
+    <main class="chat-panel">
+
+      <!-- Chat header: shows active contact info -->
+      <header class="chat-header">
+        <div class="chat-header-avatar" id="header-avatar">🤖</div>
+        <div class="chat-header-info">
+          <span class="chat-header-name" id="header-name">NexBot</span>
+          <span class="chat-header-status" id="header-status">Online · ready to chat</span>
+        </div>
+        <!-- Action icons (decorative) -->
+        <div class="header-actions">
+          <button class="icon-btn" title="Video call">📹</button>
+          <button class="icon-btn" title="Voice call">📞</button>
+          <button class="icon-btn" title="More">⋯</button>
+        </div>
+      </header>
+
+      <!-- Message history area — scrollable -->
+      <div class="messages-area" id="messages-area">
+        <!-- Messages are injected here by JS -->
+      </div>
+
+      <!-- Typing indicator (shown while bot is "typing") -->
+      <div class="typing-indicator hidden" id="typing-indicator">
+        <div class="typing-avatar" id="typing-avatar">🤖</div>
+        <div class="typing-dots">
+          <span></span><span></span><span></span>
+        </div>
+        <span class="typing-label" id="typing-name">NexBot is typing…</span>
+      </div>
+
+      <!-- ── Input Bar ── -->
+      <div class="input-bar">
+        <!-- Emoji button (decorative, shows a simple picker) -->
+        <button class="emoji-btn" id="emoji-btn" title="Emoji">😊</button>
+
+        <!-- Simple emoji picker popup -->
+        <div class="emoji-picker hidden" id="emoji-picker">
+          <!-- Emojis are injected by JS -->
+        </div>
+
+        <!-- Message text input -->
+        <input
+          type="text"
+          id="message-input"
+          class="message-input"
+          placeholder="Type a message…"
+          autocomplete="off"
+          maxlength="500"
+        />
+
+        <!-- Send button -->
+        <button class="send-btn" id="send-btn" title="Send">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Main JS -->
+  <script src="chat.js"></script>
+</body>
+</html>
